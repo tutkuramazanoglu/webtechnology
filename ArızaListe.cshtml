@@ -1,0 +1,40 @@
+﻿@model IEnumerable<Ecommerce.Models.Arıza>
+
+@{
+    ViewBag.Title = "ArızaListe";
+    Layout = "~/Views/Shared/AdminPanel.cshtml";
+}
+
+<div class="col-md-6">
+    <table class="table table-bordered">
+        <tr>
+            <td colspan="6" class="text-center text-info"><b>URUNLER</b></td>
+        </tr>
+        <tr>
+            <th>Urun Adı</th>
+            <th>Urun ID</th>
+            <th>Kullanıcı Adı</th>
+            <th>Kullnıcı ID</th>
+            <th>Sikayet Nedeni</th>
+            <th>Sikayet Tarihi</th>
+        </tr>
+        @foreach (var item in Model)
+            {
+            <tr>
+                <td>@item.ProductName</td>
+                <td>@item.ProductID</td>
+                <td>@item.UserName</td>
+                <td>@item.UserID</td>
+                <td>@item.FailureCause</td>
+                <td>@item.ComplaintTime</td>
+                <td>
+                    <a href="@Url.Action("Edit", "Admin", new { id = item.ID })"><span class="glyphicon glyphicon-edit"></span></a>
+                    <a href="@Url.Action("Sil", "Admin", new { id = item.ID })"><span class="glyphicon glyphicon-remove"></span></a>
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+
+
+

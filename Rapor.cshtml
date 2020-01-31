@@ -1,0 +1,80 @@
+﻿@model IEnumerable<object>
+@{
+    ViewBag.Title = "Admin";
+    Layout = "~/Views/Shared/AdminPanel.cshtml";
+    List<object> oList1 = new List<object>();
+    List<object> oList2 = new List<object>();
+    List<object> oList3 = new List<object>();
+    List<object> oList4 = new List<object>();
+    List<object> oList5 = new List<object>();
+    oList1.Add(Model.ToList()[0]);
+    oList2.Add(Model.ToList()[1]);
+    oList3.Add(Model.ToList()[2]);
+    oList4.Add(Model.ToList()[3]);
+    oList5.Add(Model.ToList()[4]);
+
+}
+<link href="~//Content/css/style.css" rel="stylesheet" />
+
+
+<div class="tasiyici">
+    <p style="color:red;font-family:tahoma;font-weight:bold;font-size:150%">En Cok Alısveris Yapan Uye</p>
+    @foreach (object item in oList1)
+            {
+                string asd = item.ToString();
+                asd = asd.Replace("{", "").Replace("}", "").Replace("KullanıcıAdı", "Kullanıcı Adı").Replace("SatilanUrunSayisi", "Satilan Urun Sayisi");
+                string[] words = asd.Split(',');
+                foreach (string word in words)
+                {
+                     <p style="color:black;font-family:tahoma;font-weight:bold;font-size:125%">@word</p>
+                }
+    }
+
+    <p style="color:red;font-family:tahoma;font-weight:bold;font-size:150%">En Cok Satılan Urun</p>
+    @foreach (var item in oList2)
+            {
+                string s = item.ToString();
+                s = s.Replace("{", "").Replace("}", "").Replace("urunAdı", "Urun Adı").Replace("toplamsatıs", "Toplam Satıs");
+                string[] words = s.Split(',');
+                foreach (var item2 in words)
+                {
+            <p style="color:black;font-family:tahoma;font-weight:bold;font-size:125%">@item2</p>
+        }
+    }
+
+    <p style="color:red;font-family:tahoma;font-weight:bold;font-size:150%">Satılan Urun Adedi</p>
+    @foreach (var item in oList3)
+            {
+                string k = item.ToString();
+                k = k.Replace("/", "Urun Adı=").Replace("+", "  Urun Adedi=");
+                string[] words = k.Split(',');
+                foreach (var item3 in words)
+                {
+            <p style="color:black;font-family:tahoma;font-weight:bold;font-size:125%">@item3</p>
+        }
+    }
+
+    <p style="color:red;font-family:tahoma;font-weight:bold;font-size:150%">Kullanıcıların Toplam Harcamaları</p>
+    @foreach (var item in oList4)
+            {
+                string f = item.ToString();
+                f = f.Replace("/", "Kullanıcı Adı=").Replace("+", "  Toplam Satıs=");
+                string[] word = f.Split('*');
+                foreach (var item4 in word)
+                {
+            <p style="color:black;font-family:tahoma;font-weight:bold;font-size:125%">@item4</p>
+        }
+    }
+    <p style="color:red;font-family:tahoma;font-weight:bold;font-size:150%">Kullanıcıların Sepetindeki Satın Alınmayan Urunler</p>
+    @foreach (var item in oList5)
+    {
+        string g = item.ToString();
+        g = g.Replace("/", "Kullanıcı Adı=").Replace("+", "Alinmayan Urun Sayisi=");
+        string[] kelime = g.Split(',');
+        foreach (string word in kelime)
+        {
+            <p style="color:black;font-family:tahoma;font-weight:bold;font-size:125%">@word</p>
+        }
+    }
+    
+</div>

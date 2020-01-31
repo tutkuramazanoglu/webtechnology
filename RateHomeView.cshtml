@@ -1,0 +1,114 @@
+﻿@{
+    @model Ecommerce.Models.Oylama
+    string valuePassedIn = this.ViewData.ContainsKey("VariableName") ? this.ViewData["VariableName"].ToString() : string.Empty;
+    string valuePassedIn1 = this.ViewData.ContainsKey("ortalama") ? this.ViewData["ortalama"].ToString() : string.Empty;
+    int urunId = 0;
+    if (valuePassedIn != "")
+    {
+        urunId = Convert.ToInt32(valuePassedIn);
+
+    }
+    else
+    {
+        urunId = Model.ProductID;
+    }
+
+    //if(valuePassedIn1 != "")
+    //{
+    //    ort = Convert.ToInt32(valuePassedIn1);
+    //}
+    //else
+    //{
+    //    ort = Model.Score;
+    //}
+}
+
+
+@*@using (Html.BeginForm("Rate", "Home", FormMethod.Post))
+    {
+        @Html.HiddenFor(model => model.ProductID, new { Value = urunId })
+        @Html.HiddenFor(model => model.UserID)
+        <p>
+            Berbat:     @Html.RadioButtonFor(model => model.Score, new { value = "yildiz i" }) &nbsp;&nbsp;
+            İdare Eder: @Html.RadioButtonFor(model => model.Score, new { value = "yildiz i" }) &nbsp;&nbsp;
+            Orta:       @Html.RadioButtonFor(model => model.Score, new { value = "yildiz i" }) &nbsp;&nbsp;
+            Güzel:      @Html.RadioButtonFor(model => model.Score, new { value = "yildiz i" }) &nbsp;&nbsp;
+            Çok Iyi:    @Html.RadioButtonFor(model => model.Score, new { value = "yildiz i" }) &nbsp;&nbsp;
+        </p>
+        <input type="submit" value=OYLA class="btn btn-default btn-md pull-right">
+    }  Bu ürünün ortalaması= @valuePassedIn1*@
+@using (Html.BeginForm("Rate", "Home", FormMethod.Post))
+    {
+        @Html.HiddenFor(model => model.ProductID, new { Value = urunId })
+    @Html.HiddenFor(m => m.Score, new { id = "Score" })
+    @Html.HiddenFor(m => m.Score, new { id = "Score" })
+    @Html.HiddenFor(m => m.Score, new { id = "Score" })
+    @Html.HiddenFor(m => m.Score, new { id = "Score" })
+    @Html.HiddenFor(m => m.Score, new { id = "Score" })
+    @Html.HiddenFor(m => m.Score, new { id = "Score" })
+    <input type="submit" value=OYLA class="btn btn-default btn-md pull-right">
+    }
+        Bu ürünün ortalaması= @valuePassedIn1
+
+
+    <!DOCTYPE HTML>
+    <html lang="en-US">
+    <head>
+        <meta charset="UTF-8">
+        <title>UstaDerslik</title>
+        <link rel="stylesheet" href="http://fortawesome.github.io/Font-Awesome/assets/font-awesome/css/font-awesome.css">
+        <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+        <script type="text/javascript">
+            $(function(){
+                var kontrol=0;//kontrol değişkenimiz.tıklandıktan sonra renkler sıfırlanmasın diye
+
+                $("#yildiz i").mouseover(function(){//yıldızların üzerine mouse ile gelinirse
+                        var index=$(this).index();//üzerine gelinenin sayfadaki sırasını al.
+                        $("#yildiz i").css("color","#000")//tüm yıldızları siyah yap
+
+                        for(i=index;i>=0;i--){//seçtiğimiz yıldız ve altındakileri döngüye alıyoruz.
+                            $("#yildiz i:eq("+i+")").css("color","#15d4f5");//tek tek renklerini değiştiriyoruz.
+                        }
+                })
+
+                $("#yildiz i").mouseout(function(){//yıldızların üzerinden mouse çekilirse
+                    if(kontrol==0){//kontrol 0 ise
+                        $("#yildiz i").css("color","#000");//hepsini siyah yap
+                    }
+                })
+
+                $("#yildiz i").click(function(){//yıldıza tıklanırsa
+                    var index = $(this).index() + 1;//seçilen yıldız sayısını buluyoruz.
+                    
+                    kontrol=1;//kontrolü 1 yapıyoruz
+                    alert(index + " yıldız verdiniz.");//yıldız sayısını ekrana bastırıyoruz.
+                })
+
+                $(function () {
+                    var someNr = index;
+                    $('#Score').val(someNr);
+                })
+
+            })
+
+
+        </script>
+
+        <style type="text/css">
+            #yildiz {
+                font-size: 30px;
+            }
+        </style>
+    </head>
+    <body>
+
+        <div id="yildiz">
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+        </div>
+
+    </body>
+    </html>

@@ -1,0 +1,80 @@
+﻿@model IEnumerable<object>
+
+@{
+    ViewBag.Title = "Admin";
+    Layout = "~/Views/Shared/AdminPanel.cshtml";
+    List<Ecommerce.Models.Urunler> urunListe = Model.ToList()[0] as List<Ecommerce.Models.Urunler>;
+    List<Ecommerce.Models.Kullanıcılar> kullanıcıListe = Model.ToList()[1] as List<Ecommerce.Models.Kullanıcılar>;
+}
+<div class="row">
+    <div class="col-md-6">
+        <table class="table table-bordered">
+            <tr>
+                <td colspan="6" class="text-center text-info"><b>URUNLER</b></td>
+            </tr>
+            <tr>
+                <th>Ad</th>
+                <th>kod</th>
+                <th>Fiyat</th>
+                <th>Para Birimi</th>
+                <th>Adet</th>
+                <th>Stok Durumu</th>
+                <th>Siparis Miktari</th>
+                <th>Resim</th>
+                <th>Sipariş Edilen Miktar</th>
+                <th>Kategori</th>
+            </tr>
+            @foreach (var item in urunListe)
+            {
+                <tr>
+                    <td>@item.ProductName</td>
+                    <td>@item.ProductCode</td>
+                    <td>@item.ProductPrice</td>
+                    <td>@item.Currency</td>
+                    <td>@item.ProductUnit</td>
+                    <td>@item.Quantity</td>
+                    <td>@item.OrderedQuantity</td>
+                    <td>@item.ProductPicture</td>
+                    <td>@item.OrderedQuantity</td>
+                    <td>@item.CategoryID</td>
+                    <td>
+                        <a href="@Url.Action("Edit", "Admin", new { id = item.UrunID })"><span class="glyphicon glyphicon-edit"></span></a>
+                        <a href="@Url.Action("Sil", "Admin", new { id = item.UrunID })"><span class="glyphicon glyphicon-remove"></span></a>
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+    <br />
+    <div class="col-md-6">
+        <table class="table table-bordered">
+            <tr>
+                <td colspan="6" class="text-center text-info"><b>UYELER</b></td>
+            </tr>
+            <tr>
+                <th>Ad</th>
+                <th>Sifre</th>
+                <th>Kimlik Numarası</th>
+                <th>Adres</th>
+                <th>Eposta Adresi</th>
+                <th>Rol</th>
+            </tr>
+
+            @foreach (var item in kullanıcıListe)
+            {
+                <tr>
+                    <td>@item.Username</td>
+                    <td>@item.Password</td>
+                    <td>@item.IdentityNo</td>
+                    <td>@item.Address</td>
+                    <td>@item.eposta</td>
+                    <td>@item.Role</td>
+                    <td>
+                        <a href="@Url.Action("Guncelle", "Admin", new { id = item.KullanıcıID })"><span class="glyphicon glyphicon-edit"></span></a>
+                        <a href="@Url.Action("Sil", "Admin", new { id = item.KullanıcıID })"><span class="glyphicon glyphicon-remove"></span></a>
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>

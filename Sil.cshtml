@@ -1,0 +1,112 @@
+﻿@model Ecommerce.Models.Urunler
+
+@{
+    ViewBag.Title = "Sil";
+    Layout = "~/Views/Shared/AdminPanel.cshtml";
+}
+
+<h2>Sil</h2>
+
+<h3>Silmek İstediğinize Emin Misiniz?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductPrice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductPrice)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Currency)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Currency)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductUnit)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductUnit)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Quantity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Quantity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductPicture)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductPicture)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OrderedQuantity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OrderedQuantity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CategoryID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CategoryID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Resimler.ResimYolu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Resimler.ResimYolu)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Kategori.CategoryName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Kategori.CategoryName)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="SIL" class="btn btn-default" /> |
+            @Html.ActionLink("Listeye Geri Dön", "Admin")
+        </div>
+    }
+</div>

@@ -1,0 +1,36 @@
+﻿@model Ecommerce.Models.Urunler
+@{
+    ViewBag.Title = @Html.DisplayFor(model => model.ProductName);
+}
+<div class="container">
+    <div class="col-md-5">
+        <img src="@Model.ProductPicture" style="width:300px;height:300px" />
+        <p><h3 class="text-primary"><b>@Ecommerce.Resource.HomeText.UrunAdı:@Model.ProductName</b></h3></p>
+        <p><h4 class="text-success">@Ecommerce.Resource.HomeText.UrunFiyat:@Model.ProductPrice @Model.Currency</h4></p>
+        @using (Html.BeginForm("SepetEkle", "Sepet", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(model => model.UrunID)
+            @Html.HiddenFor(model => model.Quantity)
+            <p>
+                @Ecommerce.Resource.HomeText.Adet&nbsp;
+                @Html.DropDownListFor(x => x.OrderedQuantity, new List<SelectListItem>
+                   {
+                       new SelectListItem() {Text = "1", Value="1"},
+                       new SelectListItem() {Text = "2", Value="2"},
+                       new SelectListItem() {Text = "3", Value="3"},
+                       new SelectListItem() {Text = "10", Value="10"}
+
+                        })
+                <input type="submit" value=@Ecommerce.Resource.HomeText.SatınAl class="btn btn-default btn-md pull-right">
+            </p>
+        }
+    </div>
+    <div class="col-md-5">
+        <p><h4>Oylama Yaptığınız Icin Tesekkur Ederiz :)</h4></p>
+        <p><h4 class="text-success">Urün Ortalamasi @Model.Score</h4></p>
+
+
+    </div>
+</div>
+
